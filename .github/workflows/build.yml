@@ -1,0 +1,24 @@
+name: Build C++ EXE
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Ambil source code
+        uses: actions/checkout@v4
+
+      - name: Compile C++
+        run: g++ menu_satu.cpp -o menu_satu.exe
+
+      - name: Simpan EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: menu_satu-exe
+          path: menu_satu.exe
